@@ -1,0 +1,2444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20180110 16:38:55.158" generator="Robot 3.0.2 (Python 2.7.13 on win32)">
+<suite source="D:\Robot\Learning\CEAuto" id="s1" name="CEAuto">
+<suite source="D:\Robot\Learning\CEAuto\TestSuite" id="s1-s1" name="TestSuite">
+<suite source="D:\Robot\Learning\CEAuto\TestSuite\003-RQ1362" id="s1-s1-s1" name="003-RQ1362">
+<suite source="D:\Robot\Learning\CEAuto\TestSuite\003-RQ1362\001-DoubleOptin.robot" id="s1-s1-s1-s1" name="001-DoubleOptin">
+<kw type="setup" name="Connect to sybase database" library="dbConnections">
+<kw name="Connect To SybaseDB" library="sybaseLibrary">
+<arguments>
+<arg>${sybaseServer}</arg>
+<arg>${sybasePort}</arg>
+<arg>${sybaseDB}</arg>
+<arg>${sybaseUser}</arg>
+<arg>${sybasePassword}</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:39:09.270" starttime="20180110 16:39:05.832"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:09.270" starttime="20180110 16:39:05.831"></status>
+</kw>
+<test id="s1-s1-s1-s1-t1" name="Test107-09">
+<kw name="FireSOAPMethod_CancelSubscription" library="webserviceTasks">
+<arguments>
+<arg>${getSubscriptionId1}</arg>
+</arguments>
+<kw name="Connect to oracle database" library="dbConnections">
+<kw name="Connect To Database Using Custom Params" library="DatabaseLibrary">
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to</doc>
+<arguments>
+<arg>cx_Oracle</arg>
+<arg>'${dbUser}/${dbPassword}@${oracle_service_name}'</arg>
+</arguments>
+<msg timestamp="20180110 16:39:10.181" level="INFO">Executing : Connect To Database Using Custom Params : cx_Oracle.connect(db_api_2.connect('SIT_CE43/SIT_CE43@SITDB')) </msg>
+<status status="PASS" endtime="20180110 16:39:20.146" starttime="20180110 16:39:09.273"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:20.147" starttime="20180110 16:39:09.273"></status>
+</kw>
+<kw name="Query from database" library="dbConnections">
+<arguments>
+<arg>${getSubscriptionId1}</arg>
+</arguments>
+<assign>
+<var>${subscriptionId}</var>
+</assign>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${queryResults}</var>
+</assign>
+<msg timestamp="20180110 16:39:20.148" level="INFO">Executing : Query  |  select ssd_id from sub_subscriber_detail where ssd_active = 'A' and ssd_source_msisdn = '0051121202' and ssd_keyword = 'AUTO_ZOOZOO1' </msg>
+<msg timestamp="20180110 16:39:20.157" level="INFO">${queryResults} = []</msg>
+<status status="PASS" endtime="20180110 16:39:20.158" starttime="20180110 16:39:20.148"></status>
+</kw>
+<msg timestamp="20180110 16:39:20.158" level="INFO">${subscriptionId} = []</msg>
+<status status="PASS" endtime="20180110 16:39:20.158" starttime="20180110 16:39:20.147"></status>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${subscriptionId}</arg>
+</arguments>
+<assign>
+<var>${length}</var>
+</assign>
+<msg timestamp="20180110 16:39:20.159" level="INFO">Length is 0</msg>
+<msg timestamp="20180110 16:39:20.159" level="INFO">${length} = 0</msg>
+<status status="PASS" endtime="20180110 16:39:20.159" starttime="20180110 16:39:20.159"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${length}==0</arg>
+<arg>LOG</arg>
+<arg>No need to execute cancel subscription API</arg>
+<arg>ELSE</arg>
+<arg>cancelSubscription</arg>
+<arg>${subscriptionId[0][0]}</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>No need to execute cancel subscription API</arg>
+</arguments>
+<msg timestamp="20180110 16:39:20.161" level="INFO">No need to execute cancel subscription API</msg>
+<status status="PASS" endtime="20180110 16:39:20.161" starttime="20180110 16:39:20.161"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:20.161" starttime="20180110 16:39:20.160"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:20.162" starttime="20180110 16:39:09.272"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${small_sleep}</arg>
+</arguments>
+<msg timestamp="20180110 16:39:25.163" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" endtime="20180110 16:39:25.163" starttime="20180110 16:39:20.162"></status>
+</kw>
+<kw name="Oracle DB query" library="commonTasks">
+<arguments>
+<arg>${isSubscripitonActive1}</arg>
+<arg>0</arg>
+<arg>int</arg>
+</arguments>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>int</arg>
+</arguments>
+<assign>
+<var>${int}</var>
+</assign>
+<msg timestamp="20180110 16:39:25.165" level="INFO">${int} = int</msg>
+<status status="PASS" endtime="20180110 16:39:25.165" starttime="20180110 16:39:25.165"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>str</arg>
+</arguments>
+<assign>
+<var>${str}</var>
+</assign>
+<msg timestamp="20180110 16:39:25.166" level="INFO">${str} = str</msg>
+<status status="PASS" endtime="20180110 16:39:25.166" starttime="20180110 16:39:25.165"></status>
+</kw>
+<kw name="Connect to oracle database" library="dbConnections">
+<kw name="Connect To Database Using Custom Params" library="DatabaseLibrary">
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to</doc>
+<arguments>
+<arg>cx_Oracle</arg>
+<arg>'${dbUser}/${dbPassword}@${oracle_service_name}'</arg>
+</arguments>
+<msg timestamp="20180110 16:39:25.167" level="INFO">Executing : Connect To Database Using Custom Params : cx_Oracle.connect(db_api_2.connect('SIT_CE43/SIT_CE43@SITDB')) </msg>
+<status status="PASS" endtime="20180110 16:39:25.253" starttime="20180110 16:39:25.167"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:25.253" starttime="20180110 16:39:25.166"></status>
+</kw>
+<kw name="Query from database" library="dbConnections">
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${queryResults}</var>
+</assign>
+<msg timestamp="20180110 16:39:25.255" level="INFO">Executing : Query  |  select count(*) from sub_subscriber_detail where ssd_active = 'A' and ssd_source_msisdn = '0051121202' and ssd_keyword = 'AUTO_ZOOZOO1' </msg>
+<msg timestamp="20180110 16:39:25.278" level="INFO">${queryResults} = [(0,)]</msg>
+<status status="PASS" endtime="20180110 16:39:25.279" starttime="20180110 16:39:25.254"></status>
+</kw>
+<msg timestamp="20180110 16:39:25.279" level="INFO">${result} = [(0,)]</msg>
+<status status="PASS" endtime="20180110 16:39:25.279" starttime="20180110 16:39:25.254"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${result[0][0]}</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:39:25.280" starttime="20180110 16:39:25.280"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${datatype}==${int} and '${result[0][0]}'!='${expected}'</arg>
+<arg>Assert_int</arg>
+<arg>${expected}</arg>
+<arg>${query}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${int} and '${result[0][0]}'=='${expected}'</arg>
+<arg>Should Be Equal As Integers</arg>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${str} and '${result[0][0]}'!='${expected}'</arg>
+<arg>Assert_string</arg>
+<arg>${expected}</arg>
+<arg>${query}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${str} and '${result[0][0]}'=='${expected}'</arg>
+<arg>Should Be Equal As Strings</arg>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+<arg>ELSE</arg>
+<arg>Log To Console</arg>
+<arg>Invalid Datatype</arg>
+</arguments>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+</arguments>
+<msg timestamp="20180110 16:39:25.306" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'int'&gt;</msg>
+<status status="PASS" endtime="20180110 16:39:25.306" starttime="20180110 16:39:25.305"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:25.306" starttime="20180110 16:39:25.281"></status>
+</kw>
+<kw name="Disconnect connection to oracleDB" library="dbConnections">
+<kw name="Disconnect From Database" library="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<msg timestamp="20180110 16:39:25.308" level="INFO">Executing : Disconnect From Database</msg>
+<status status="PASS" endtime="20180110 16:39:25.313" starttime="20180110 16:39:25.307"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:25.314" starttime="20180110 16:39:25.307"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:25.314" starttime="20180110 16:39:25.164"></status>
+</kw>
+<kw name="Change Account_balance in PPIN" library="commonTasks">
+<arguments>
+<arg>${subscription_msisdn}</arg>
+</arguments>
+<kw name="Execute Sybase Query" library="sybaseLibrary">
+<arguments>
+<arg>update Subscriber set Account_balance = 9999999 where Sub_id='${msisdn}'</arg>
+</arguments>
+<msg timestamp="20180110 16:39:25.370" level="INFO">Number of rows updated: 1</msg>
+<status status="PASS" endtime="20180110 16:39:25.371" starttime="20180110 16:39:25.315"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:25.371" starttime="20180110 16:39:25.314"></status>
+</kw>
+<kw name="Subscription Optin" library="commonTasks">
+<arguments>
+<arg>1</arg>
+<arg>0</arg>
+</arguments>
+<kw name="Connect to oracle database" library="dbConnections">
+<kw name="Connect To Database Using Custom Params" library="DatabaseLibrary">
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to</doc>
+<arguments>
+<arg>cx_Oracle</arg>
+<arg>'${dbUser}/${dbPassword}@${oracle_service_name}'</arg>
+</arguments>
+<msg timestamp="20180110 16:39:25.373" level="INFO">Executing : Connect To Database Using Custom Params : cx_Oracle.connect(db_api_2.connect('SIT_CE43/SIT_CE43@SITDB')) </msg>
+<status status="PASS" endtime="20180110 16:39:25.464" starttime="20180110 16:39:25.373"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:25.464" starttime="20180110 16:39:25.372"></status>
+</kw>
+<kw name="Query from database" library="dbConnections">
+<arguments>
+<arg>${isSubscriptionOptinEnabled}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${queryResults}</var>
+</assign>
+<msg timestamp="20180110 16:39:25.466" level="INFO">Executing : Query  |  select SOC_STATUS from SUB_OPT_IN_CONFIG where SOC_OPT_IN_TYPE ='S' </msg>
+<msg timestamp="20180110 16:39:25.660" level="INFO">${queryResults} = [(1,)]</msg>
+<status status="PASS" endtime="20180110 16:39:25.660" starttime="20180110 16:39:25.465"></status>
+</kw>
+<msg timestamp="20180110 16:39:25.661" level="INFO">${result} = [(1,)]</msg>
+<status status="PASS" endtime="20180110 16:39:25.661" starttime="20180110 16:39:25.464"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${result[0][0]}==${global_optin}</arg>
+<arg>LOG</arg>
+<arg>Expected and actual global optin is same</arg>
+<arg>ELSE</arg>
+<arg>GUI Enable Subscription Global Opt-IN</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Expected and actual global optin is same</arg>
+</arguments>
+<msg timestamp="20180110 16:39:25.663" level="INFO">Expected and actual global optin is same</msg>
+<status status="PASS" endtime="20180110 16:39:25.663" starttime="20180110 16:39:25.662"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:25.663" starttime="20180110 16:39:25.661"></status>
+</kw>
+<kw name="Query from database" library="dbConnections">
+<arguments>
+<arg>${isSubscriptionBasedOnTariffEnabled}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${queryResults}</var>
+</assign>
+<msg timestamp="20180110 16:39:25.664" level="INFO">Executing : Query  |  select SOC_ON_TARIFF_FLG from SUB_OPT_IN_CONFIG where SOC_OPT_IN_TYPE ='S' </msg>
+<msg timestamp="20180110 16:39:25.673" level="INFO">${queryResults} = [(0,)]</msg>
+<status status="PASS" endtime="20180110 16:39:25.673" starttime="20180110 16:39:25.664"></status>
+</kw>
+<msg timestamp="20180110 16:39:25.674" level="INFO">${result} = [(0,)]</msg>
+<status status="PASS" endtime="20180110 16:39:25.674" starttime="20180110 16:39:25.663"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${result[0][0]}==${optin_at_tariff_level}</arg>
+<arg>LOG</arg>
+<arg>Expected and actual tariff level optin is same</arg>
+<arg>ELSE</arg>
+<arg>GUI Enable Subscription Opt-IN at Tariff Level</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Expected and actual tariff level optin is same</arg>
+</arguments>
+<msg timestamp="20180110 16:39:25.675" level="INFO">Expected and actual tariff level optin is same</msg>
+<status status="PASS" endtime="20180110 16:39:25.676" starttime="20180110 16:39:25.675"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:25.676" starttime="20180110 16:39:25.674"></status>
+</kw>
+<kw name="Disconnect connection to oracleDB" library="dbConnections">
+<kw name="Disconnect From Database" library="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<msg timestamp="20180110 16:39:25.677" level="INFO">Executing : Disconnect From Database</msg>
+<status status="PASS" endtime="20180110 16:39:25.756" starttime="20180110 16:39:25.677"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:25.756" starttime="20180110 16:39:25.676"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:25.756" starttime="20180110 16:39:25.371"></status>
+</kw>
+<kw name="Configure Subscription Notifications and session expiry" library="commonTasks">
+<kw name="Connect to oracle database" library="dbConnections">
+<kw name="Connect To Database Using Custom Params" library="DatabaseLibrary">
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to</doc>
+<arguments>
+<arg>cx_Oracle</arg>
+<arg>'${dbUser}/${dbPassword}@${oracle_service_name}'</arg>
+</arguments>
+<msg timestamp="20180110 16:39:25.758" level="INFO">Executing : Connect To Database Using Custom Params : cx_Oracle.connect(db_api_2.connect('SIT_CE43/SIT_CE43@SITDB')) </msg>
+<status status="PASS" endtime="20180110 16:39:25.811" starttime="20180110 16:39:25.758"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:25.811" starttime="20180110 16:39:25.757"></status>
+</kw>
+<kw name="Query from database" library="dbConnections">
+<arguments>
+<arg>${maxConfiguredOptinLevel}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${queryResults}</var>
+</assign>
+<msg timestamp="20180110 16:39:25.813" level="INFO">Executing : Query  |  select SOC_MAX_LEVEL_CONF from SUB_OPT_IN_CONFIG where SOC_OPT_IN_TYPE ='S' </msg>
+<msg timestamp="20180110 16:39:25.832" level="INFO">${queryResults} = [(2,)]</msg>
+<status status="PASS" endtime="20180110 16:39:25.832" starttime="20180110 16:39:25.813"></status>
+</kw>
+<msg timestamp="20180110 16:39:25.833" level="INFO">${result} = [(2,)]</msg>
+<status status="PASS" endtime="20180110 16:39:25.833" starttime="20180110 16:39:25.812"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${result[0][0]}==1</arg>
+<arg>Configure 1 level global Subcription notification</arg>
+<arg>ELSE</arg>
+<arg>Configure 2 level global Subcription notification</arg>
+</arguments>
+<kw name="Configure 2 level global Subcription notification" library="commonTasks">
+<kw name="Init Browser and login" library="commonTasks">
+<kw name="Create normal browser" library="commonTasks">
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${URL}</arg>
+<arg>${browser}</arg>
+</arguments>
+<msg timestamp="20180110 16:39:25.836" level="INFO">Opening browser 'chrome' to base url 'http://172.20.39.82:8080/ce-admin/login.htm'</msg>
+<status status="PASS" endtime="20180110 16:39:57.462" starttime="20180110 16:39:25.836"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" endtime="20180110 16:39:58.750" starttime="20180110 16:39:57.464"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:58.750" starttime="20180110 16:39:25.835"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>${login_username_loc}</arg>
+<arg>30s</arg>
+<arg>Timed out after 30 seconds</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:39:58.848" starttime="20180110 16:39:58.751"></status>
+</kw>
+<kw name="Pass Input to" library="commonTasks">
+<arguments>
+<arg>${login_username_loc}</arg>
+<arg>${UserName}</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20180110 16:39:58.850" level="INFO">Typing text 'robots' into text field '//input[@class='length-medium'][@name='userId']'</msg>
+<status status="PASS" endtime="20180110 16:39:58.981" starttime="20180110 16:39:58.850"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:58.981" starttime="20180110 16:39:58.849"></status>
+</kw>
+<kw name="Pass Input to" library="commonTasks">
+<arguments>
+<arg>${login_password_loc}</arg>
+<arg>${Password}</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20180110 16:39:58.983" level="INFO">Typing text '@demo123' into text field '//input[@class='length-medium'][@name='password']'</msg>
+<status status="PASS" endtime="20180110 16:39:59.072" starttime="20180110 16:39:58.983"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:59.073" starttime="20180110 16:39:58.982"></status>
+</kw>
+<kw name="Submit the form" library="commonTasks">
+<arguments>
+<arg>${login_submit_loc}</arg>
+</arguments>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>${xpath}</arg>
+<arg>30s</arg>
+<arg>Timed out after 30 seconds</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:39:59.092" starttime="20180110 16:39:59.074"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks a button identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+</arguments>
+<msg timestamp="20180110 16:39:59.094" level="INFO">Clicking button '//input[@class='default right']'.</msg>
+<status status="PASS" endtime="20180110 16:39:59.149" starttime="20180110 16:39:59.093"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:39:59.150" starttime="20180110 16:39:59.073"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${micro_sleep}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:01.151" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20180110 16:40:01.152" starttime="20180110 16:39:59.150"></status>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Confirm Action</arg>
+</arguments>
+<kw name="Confirm Action" library="Selenium2Library">
+<doc>Dismisses currently shown confirmation dialog and returns it's message.</doc>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20180110 16:40:07.800" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" endtime="20180110 16:40:07.801" starttime="20180110 16:40:07.338"></status>
+</kw>
+<msg timestamp="20180110 16:40:07.802" level="FAIL">There were no alerts</msg>
+<status status="FAIL" endtime="20180110 16:40:07.802" starttime="20180110 16:40:01.154"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:07.803" starttime="20180110 16:40:01.153"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:07.804" starttime="20180110 16:39:25.834"></status>
+</kw>
+<kw name="Navigate to third level" library="commonTasks">
+<arguments>
+<arg>${services_header_loc}</arg>
+<arg>${subscription_management_loc}</arg>
+<arg>${subscription_optin_loc}</arg>
+</arguments>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${xpath1}</arg>
+<arg>${xlarge_sleep}</arg>
+<arg>Timed out after ${xlarge_sleep}</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:40:07.861" starttime="20180110 16:40:07.805"></status>
+</kw>
+<kw name="Mouse Over" library="Selenium2Library">
+<doc>Simulates hovering mouse over the element specified by `locator`.</doc>
+<arguments>
+<arg>${xpath1}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:07.862" level="INFO">Simulating Mouse Over on element '//div[@id='myslidemenu']/ul/li[4]/a'</msg>
+<status status="PASS" endtime="20180110 16:40:07.905" starttime="20180110 16:40:07.862"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${xpath2}</arg>
+<arg>${xlarge_sleep}</arg>
+<arg>Timed out after ${xlarge_sleep}</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:40:08.171" starttime="20180110 16:40:07.906"></status>
+</kw>
+<kw name="Mouse Over" library="Selenium2Library">
+<doc>Simulates hovering mouse over the element specified by `locator`.</doc>
+<arguments>
+<arg>${xpath2}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:08.172" level="INFO">Simulating Mouse Over on element '//div[@id='myslidemenu']/ul/li[4]/ul/li[7]/a'</msg>
+<status status="PASS" endtime="20180110 16:40:08.200" starttime="20180110 16:40:08.172"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>${xpath3}</arg>
+<arg>${xlarge_sleep}</arg>
+<arg>Timed out after ${xlarge_sleep}</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:40:08.242" starttime="20180110 16:40:08.200"></status>
+</kw>
+<kw name="Click on" library="commonTasks">
+<arguments>
+<arg>${xpath3}</arg>
+</arguments>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>${button}</arg>
+<arg>${xlarge_sleep}</arg>
+<arg>Timed out after ${xlarge_sleep}</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:40:08.254" starttime="20180110 16:40:08.244"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${button}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:08.255" level="INFO">Clicking element '//div[@id='myslidemenu']/ul/li[4]/ul/li[7]/ul/li[1]/a'.</msg>
+<status status="PASS" endtime="20180110 16:40:13.354" starttime="20180110 16:40:08.254"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:13.354" starttime="20180110 16:40:08.243"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:13.355" starttime="20180110 16:40:07.804"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>${delete_optin_notificaiton_loc}</arg>
+<arg>5s</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:40:15.245" starttime="20180110 16:40:13.355"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${delete_optin_notificaiton_loc}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:15.246" level="INFO">Clicking element '//a[@class='action-delete']'.</msg>
+<status status="PASS" endtime="20180110 16:40:15.431" starttime="20180110 16:40:15.245"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${micro_sleep}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:17.432" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20180110 16:40:17.432" starttime="20180110 16:40:15.431"></status>
+</kw>
+<kw name="Wait Until Page Contains Element" library="Selenium2Library">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>${delete_optin_notificaiton_loc}</arg>
+<arg>5s</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:40:17.441" starttime="20180110 16:40:17.433"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${delete_optin_notificaiton_loc}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:17.442" level="INFO">Clicking element '//a[@class='action-delete']'.</msg>
+<status status="PASS" endtime="20180110 16:40:17.496" starttime="20180110 16:40:17.442"></status>
+</kw>
+<kw name="Pass Input to" library="commonTasks">
+<arguments>
+<arg>${optin_max_active_session_loc}</arg>
+<arg>1</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:17.497" level="INFO">Typing text '1' into text field '//input[@id='maxActiveSession']'</msg>
+<status status="PASS" endtime="20180110 16:40:17.670" starttime="20180110 16:40:17.497"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:17.670" starttime="20180110 16:40:17.496"></status>
+</kw>
+<kw name="Pass Input to" library="commonTasks">
+<arguments>
+<arg>${subscription_optin_session_expiry_time_loc}</arg>
+<arg>1</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:17.672" level="INFO">Typing text '1' into text field '//input[@id='sessionExpMins']'</msg>
+<status status="PASS" endtime="20180110 16:40:17.762" starttime="20180110 16:40:17.671"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:17.763" starttime="20180110 16:40:17.670"></status>
+</kw>
+<kw name="Pass Input to" library="commonTasks">
+<arguments>
+<arg>${notification_message_loc}</arg>
+<arg>${subscription_global_1st_level_optin_notification}</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:17.764" level="INFO">Typing text 'Global 1st level Optin: Reply [ACCEPT_KEYWORD] to accept else [REJECT_KEYWORD] to reject to shortcode [SHORT_CODE] for the requested KEYWORD [REQUESTED_KWD]' into text field '//textarea[@id='listNotifMsgPrePd_PP']'</msg>
+<status status="PASS" endtime="20180110 16:40:19.406" starttime="20180110 16:40:17.764"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:19.407" starttime="20180110 16:40:17.763"></status>
+</kw>
+<kw name="Select value from dropdown" library="commonTasks">
+<arguments>
+<arg>${allowed_keyword_loc}</arg>
+<arg>${allowed_keyword_searchbox_loc}</arg>
+<arg>${subscription_1st_level_accept keyword}</arg>
+<arg>${highlighted_value}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:19.409" level="INFO">Clicking element '//div[@id='keywordTemp1_chosen']/a/span'.</msg>
+<status status="PASS" endtime="20180110 16:40:19.489" starttime="20180110 16:40:19.409"></status>
+</kw>
+<kw name="Pass Input to" library="commonTasks">
+<arguments>
+<arg>${searchbox_xpath}</arg>
+<arg>${value}</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:19.491" level="INFO">Typing text 'AUTO_YUP' into text field '//div[@id='keywordTemp1_chosen']/div/div/input'</msg>
+<status status="PASS" endtime="20180110 16:40:19.715" starttime="20180110 16:40:19.491"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:19.716" starttime="20180110 16:40:19.490"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1s</arg>
+</arguments>
+<msg timestamp="20180110 16:40:20.717" level="INFO">Slept 1 second</msg>
+<status status="PASS" endtime="20180110 16:40:20.717" starttime="20180110 16:40:19.716"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${highlighted_value_xpath}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:20.718" level="INFO">Clicking element '//li[@class='active-result highlighted']'.</msg>
+<status status="PASS" endtime="20180110 16:40:20.790" starttime="20180110 16:40:20.718"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:20.790" starttime="20180110 16:40:19.408"></status>
+</kw>
+<kw name="Select value from dropdown" library="commonTasks">
+<arguments>
+<arg>${allowed_reject_keyword_loc}</arg>
+<arg>${reject_keyword_searchbox_loc}</arg>
+<arg>${subscription_1st_level_reject keyword}</arg>
+<arg>${highlighted_value}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:20.792" level="INFO">Clicking element '//div[@id='keywordTempRej1_chosen']/a/span'.</msg>
+<status status="PASS" endtime="20180110 16:40:20.871" starttime="20180110 16:40:20.792"></status>
+</kw>
+<kw name="Pass Input to" library="commonTasks">
+<arguments>
+<arg>${searchbox_xpath}</arg>
+<arg>${value}</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:20.873" level="INFO">Typing text 'AUTO_REJECT' into text field '//div[@id='keywordTempRej1_chosen']/div/div/input'</msg>
+<status status="PASS" endtime="20180110 16:40:21.132" starttime="20180110 16:40:20.872"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:21.133" starttime="20180110 16:40:20.871"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1s</arg>
+</arguments>
+<msg timestamp="20180110 16:40:22.133" level="INFO">Slept 1 second</msg>
+<status status="PASS" endtime="20180110 16:40:22.133" starttime="20180110 16:40:21.133"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${highlighted_value_xpath}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:22.134" level="INFO">Clicking element '//li[@class='active-result highlighted']'.</msg>
+<status status="PASS" endtime="20180110 16:40:22.188" starttime="20180110 16:40:22.134"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:22.189" starttime="20180110 16:40:20.791"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${add_button_loc}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:22.190" level="INFO">Clicking element '//input[@name='addAcc']'.</msg>
+<status status="PASS" endtime="20180110 16:40:22.255" starttime="20180110 16:40:22.189"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${micro_sleep}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:24.256" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" endtime="20180110 16:40:24.256" starttime="20180110 16:40:22.255"></status>
+</kw>
+<kw name="Pass Input to" library="commonTasks">
+<arguments>
+<arg>${notification_message_loc}</arg>
+<arg>${subscription_global_2nd_level_optin_notification}</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:24.258" level="INFO">Typing text 'Global 2nd level Optin: Reply [ACCEPT_KEYWORD] to accept else [REJECT_KEYWORD] to reject to shortcode [SHORT_CODE] for the requested KEYWORD [REQUESTED_KWD]' into text field '//textarea[@id='listNotifMsgPrePd_PP']'</msg>
+<status status="PASS" endtime="20180110 16:40:25.843" starttime="20180110 16:40:24.257"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:25.844" starttime="20180110 16:40:24.256"></status>
+</kw>
+<kw name="Select value from dropdown" library="commonTasks">
+<arguments>
+<arg>${allowed_keyword_loc}</arg>
+<arg>${allowed_keyword_searchbox_loc}</arg>
+<arg>${subscription_2nd_level_accept keyword}</arg>
+<arg>${highlighted_value}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:25.846" level="INFO">Clicking element '//div[@id='keywordTemp1_chosen']/a/span'.</msg>
+<status status="PASS" endtime="20180110 16:40:25.877" starttime="20180110 16:40:25.845"></status>
+</kw>
+<kw name="Pass Input to" library="commonTasks">
+<arguments>
+<arg>${searchbox_xpath}</arg>
+<arg>${value}</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:25.879" level="INFO">Typing text 'AUTO_SURE' into text field '//div[@id='keywordTemp1_chosen']/div/div/input'</msg>
+<status status="PASS" endtime="20180110 16:40:26.068" starttime="20180110 16:40:25.879"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:26.069" starttime="20180110 16:40:25.878"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1s</arg>
+</arguments>
+<msg timestamp="20180110 16:40:27.070" level="INFO">Slept 1 second</msg>
+<status status="PASS" endtime="20180110 16:40:27.070" starttime="20180110 16:40:26.070"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${highlighted_value_xpath}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:27.071" level="INFO">Clicking element '//li[@class='active-result highlighted']'.</msg>
+<status status="PASS" endtime="20180110 16:40:27.140" starttime="20180110 16:40:27.071"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:27.141" starttime="20180110 16:40:25.844"></status>
+</kw>
+<kw name="Select value from dropdown" library="commonTasks">
+<arguments>
+<arg>${allowed_reject_keyword_loc}</arg>
+<arg>${reject_keyword_searchbox_loc}</arg>
+<arg>${subscription_2nd_level_reject keyword}</arg>
+<arg>${highlighted_value}</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:27.142" level="INFO">Clicking element '//div[@id='keywordTempRej1_chosen']/a/span'.</msg>
+<status status="PASS" endtime="20180110 16:40:27.174" starttime="20180110 16:40:27.142"></status>
+</kw>
+<kw name="Pass Input to" library="commonTasks">
+<arguments>
+<arg>${searchbox_xpath}</arg>
+<arg>${value}</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:27.175" level="INFO">Typing text 'AUTO_NO' into text field '//div[@id='keywordTempRej1_chosen']/div/div/input'</msg>
+<status status="PASS" endtime="20180110 16:40:27.331" starttime="20180110 16:40:27.175"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:27.331" starttime="20180110 16:40:27.174"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1s</arg>
+</arguments>
+<msg timestamp="20180110 16:40:28.332" level="INFO">Slept 1 second</msg>
+<status status="PASS" endtime="20180110 16:40:28.332" starttime="20180110 16:40:27.331"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${highlighted_value_xpath}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:28.333" level="INFO">Clicking element '//li[@class='active-result highlighted']'.</msg>
+<status status="PASS" endtime="20180110 16:40:28.388" starttime="20180110 16:40:28.333"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:28.389" starttime="20180110 16:40:27.141"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${add_button_loc}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:28.389" level="INFO">Clicking element '//input[@name='addAcc']'.</msg>
+<status status="PASS" endtime="20180110 16:40:28.423" starttime="20180110 16:40:28.389"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:28.423" starttime="20180110 16:39:25.834"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:28.424" starttime="20180110 16:39:25.833"></status>
+</kw>
+<kw name="Pass Input to" library="commonTasks">
+<arguments>
+<arg>${refuse_notification_loc}</arg>
+<arg>${subscription_refuse notification}</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:28.426" level="INFO">Typing text 'Subscription: Dear Subscriber, you have rejected the request for subscription [REQUESTED_KWD]. No more notifications will be sent. Thanks.' into text field '//textarea[@id='editNotifMsgRefuse']'</msg>
+<status status="PASS" endtime="20180110 16:40:29.679" starttime="20180110 16:40:28.425"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:29.680" starttime="20180110 16:40:28.424"></status>
+</kw>
+<kw name="Pass Input to" library="commonTasks">
+<arguments>
+<arg>${expiry_notification_loc}</arg>
+<arg>${subscription_expiry notification}</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>${xpath}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:29.681" level="INFO">Typing text 'Subscription: Dear Subscriber, you did not respond for the subscription [REQUESTED_KWD]. No more notifications will be sent. Thanks.' into text field '//textarea[@id='editNotifMsgExpiry']'</msg>
+<status status="PASS" endtime="20180110 16:40:31.011" starttime="20180110 16:40:29.681"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:31.011" starttime="20180110 16:40:29.680"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>${subscription_update_button_loc}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:31.012" level="INFO">Clicking element '//input[@class='default'][@value='Update']'.</msg>
+<status status="PASS" endtime="20180110 16:40:35.848" starttime="20180110 16:40:31.012"></status>
+</kw>
+<kw name="Disconnect connection to oracleDB" library="dbConnections">
+<kw name="Disconnect From Database" library="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<msg timestamp="20180110 16:40:35.852" level="INFO">Executing : Disconnect From Database</msg>
+<status status="PASS" endtime="20180110 16:40:35.856" starttime="20180110 16:40:35.851"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:35.856" starttime="20180110 16:40:35.849"></status>
+</kw>
+<kw name="Close Browser" library="Selenium2Library">
+<doc>Closes the current browser.</doc>
+<status status="PASS" endtime="20180110 16:40:38.904" starttime="20180110 16:40:35.856"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:38.905" starttime="20180110 16:39:25.757"></status>
+</kw>
+<kw name="moRequest" library="fireMORequestRes">
+<arguments>
+<arg>${subscription_keyword1}</arg>
+<arg>${subscription_msisdn}</arg>
+<arg>${subscription_shortcode1}</arg>
+</arguments>
+<kw name="Get moUrl" library="webserviceTasks">
+<arguments>
+<arg>${short_message}</arg>
+<arg>${source_addr}</arg>
+<arg>${dest_addr}</arg>
+</arguments>
+<assign>
+<var>${moUrl}</var>
+</assign>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=</arg>
+<arg>short_message=</arg>
+<arg>${sms}</arg>
+<arg>&amp;source_addr=</arg>
+<arg>${srcAddr}</arg>
+<arg>&amp;destination_addr=</arg>
+<arg>${destAddr}</arg>
+</arguments>
+<assign>
+<var>${string1}</var>
+</assign>
+<msg timestamp="20180110 16:40:38.907" level="INFO">${string1} = short_message=AUTO_ZOOZOO1&amp;source_addr=0051121202&amp;destination_addr=8880</msg>
+<status status="PASS" endtime="20180110 16:40:38.907" starttime="20180110 16:40:38.907"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=</arg>
+<arg>${moGetUrl}</arg>
+<arg>${string1}</arg>
+<arg>&amp;submit=Submit+Message&amp;service_type=&amp;source_addr_ton=1&amp;source_addr_npi=1&amp;dest_addr_ton=1&amp;dest_addr_npi=1&amp;esm_class=0&amp;protocol_ID=&amp;priority_flag=&amp;registered_delivery_flag=0&amp;data_coding=0&amp;user_message_reference=&amp;source_port=&amp;destination_port=&amp;sar_msg_ref_num=&amp;sar_total_segments=&amp;sar_segment_seqnum=&amp;user_response_code=&amp;privacy_indicator=&amp;payload_type=&amp;message_payload=&amp;callback_num=&amp;source_subaddress=&amp;dest_subaddress=&amp;language_indicator=&amp;tlv1_tag=&amp;tlv1_len=&amp;tlv1_val=&amp;tlv2_tag=&amp;tlv2_len=&amp;tlv2_val=&amp;tlv3_tag=&amp;tlv3_len=&amp;tlv3_val=&amp;tlv4_tag=&amp;tlv4_len=&amp;tlv4_val=&amp;tlv5_tag=&amp;tlv5_len=&amp;tlv5_val=&amp;tlv6_tag=&amp;tlv6_len=&amp;tlv6_val=&amp;tlv7_tag=&amp;tlv7_len=&amp;tlv7_val=</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<msg timestamp="20180110 16:40:38.908" level="INFO">${url} = http://172.20.39.82:8888/inject_mo?short_message=AUTO_ZOOZOO1&amp;source_addr=0051121202&amp;destination_addr=8880&amp;submit=Submit+Message&amp;service_type=&amp;source_addr_ton=1&amp;source_addr_npi=1&amp;dest_addr_ton=1&amp;dest_...</msg>
+<status status="PASS" endtime="20180110 16:40:38.909" starttime="20180110 16:40:38.908"></status>
+</kw>
+<msg timestamp="20180110 16:40:38.909" level="INFO">${moUrl} = http://172.20.39.82:8888/inject_mo?short_message=AUTO_ZOOZOO1&amp;source_addr=0051121202&amp;destination_addr=8880&amp;submit=Submit+Message&amp;service_type=&amp;source_addr_ton=1&amp;source_addr_npi=1&amp;dest_addr_ton=1&amp;dest_...</msg>
+<status status="PASS" endtime="20180110 16:40:38.909" starttime="20180110 16:40:38.906"></status>
+</kw>
+<kw name="Prepare and fire GETRequest" library="webserviceTasks">
+<arguments>
+<arg>${moUrl}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>request</arg>
+<arg>${requestURL}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:38.911" level="INFO">Creating Session using : alias=request, url=http://172.20.39.82:8888/inject_mo?short_message=AUTO_ZOOZOO1&amp;source_addr=0051121202&amp;destination_addr=8880&amp;submit=Submit+Message&amp;service_type=&amp;source_addr_ton=1&amp;source_addr_npi=1&amp;dest_addr_ton=1&amp;dest_addr_npi=1&amp;esm_class=0&amp;protocol_ID=&amp;priority_flag=&amp;registered_delivery_flag=0&amp;data_coding=0&amp;user_message_reference=&amp;source_port=&amp;destination_port=&amp;sar_msg_ref_num=&amp;sar_total_segments=&amp;sar_segment_seqnum=&amp;user_response_code=&amp;privacy_indicator=&amp;payload_type=&amp;message_payload=&amp;callback_num=&amp;source_subaddress=&amp;dest_subaddress=&amp;language_indicator=&amp;tlv1_tag=&amp;tlv1_len=&amp;tlv1_val=&amp;tlv2_tag=&amp;tlv2_len=&amp;tlv2_val=&amp;tlv3_tag=&amp;tlv3_len=&amp;tlv3_val=&amp;tlv4_tag=&amp;tlv4_len=&amp;tlv4_val=&amp;tlv5_tag=&amp;tlv5_len=&amp;tlv5_val=&amp;tlv6_tag=&amp;tlv6_len=&amp;tlv6_val=&amp;tlv7_tag=&amp;tlv7_len=&amp;tlv7_val=, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180110 16:40:38.911" starttime="20180110 16:40:38.910"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>request</arg>
+<arg>/</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180110 16:40:39.197" level="INFO">Get Request using : alias=request, uri=/, headers=None </msg>
+<msg timestamp="20180110 16:40:39.197" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180110 16:40:39.197" starttime="20180110 16:40:38.912"></status>
+</kw>
+<msg timestamp="20180110 16:40:39.198" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180110 16:40:39.198" starttime="20180110 16:40:38.910"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:39.199" starttime="20180110 16:40:38.905"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${small_sleep}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:44.200" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" endtime="20180110 16:40:44.200" starttime="20180110 16:40:39.199"></status>
+</kw>
+<kw name="Oracle DB query" library="commonTasks">
+<arguments>
+<arg>${isSubscriptionOptinSessionActive1}</arg>
+<arg>1</arg>
+<arg>int</arg>
+</arguments>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>int</arg>
+</arguments>
+<assign>
+<var>${int}</var>
+</assign>
+<msg timestamp="20180110 16:40:44.202" level="INFO">${int} = int</msg>
+<status status="PASS" endtime="20180110 16:40:44.202" starttime="20180110 16:40:44.202"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>str</arg>
+</arguments>
+<assign>
+<var>${str}</var>
+</assign>
+<msg timestamp="20180110 16:40:44.203" level="INFO">${str} = str</msg>
+<status status="PASS" endtime="20180110 16:40:44.203" starttime="20180110 16:40:44.203"></status>
+</kw>
+<kw name="Connect to oracle database" library="dbConnections">
+<kw name="Connect To Database Using Custom Params" library="DatabaseLibrary">
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to</doc>
+<arguments>
+<arg>cx_Oracle</arg>
+<arg>'${dbUser}/${dbPassword}@${oracle_service_name}'</arg>
+</arguments>
+<msg timestamp="20180110 16:40:44.205" level="INFO">Executing : Connect To Database Using Custom Params : cx_Oracle.connect(db_api_2.connect('SIT_CE43/SIT_CE43@SITDB')) </msg>
+<status status="PASS" endtime="20180110 16:40:44.268" starttime="20180110 16:40:44.204"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:44.268" starttime="20180110 16:40:44.204"></status>
+</kw>
+<kw name="Query from database" library="dbConnections">
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${queryResults}</var>
+</assign>
+<msg timestamp="20180110 16:40:44.270" level="INFO">Executing : Query  |  select count(*) from cgw_validate_optin_session where cvos_msisdn = '0051121202' and CVOS_FIRST_ACTIVITY_DTIME &gt; trunc(sysdate) and cvos_shortcode = '8880' and cvos_pkg_keyword = 'AUTO_ZOOZOO1' </msg>
+<msg timestamp="20180110 16:40:44.277" level="INFO">${queryResults} = [(1,)]</msg>
+<status status="PASS" endtime="20180110 16:40:44.277" starttime="20180110 16:40:44.270"></status>
+</kw>
+<msg timestamp="20180110 16:40:44.277" level="INFO">${result} = [(1,)]</msg>
+<status status="PASS" endtime="20180110 16:40:44.277" starttime="20180110 16:40:44.269"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${result[0][0]}</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:40:44.278" starttime="20180110 16:40:44.278"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${datatype}==${int} and '${result[0][0]}'!='${expected}'</arg>
+<arg>Assert_int</arg>
+<arg>${expected}</arg>
+<arg>${query}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${int} and '${result[0][0]}'=='${expected}'</arg>
+<arg>Should Be Equal As Integers</arg>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${str} and '${result[0][0]}'!='${expected}'</arg>
+<arg>Assert_string</arg>
+<arg>${expected}</arg>
+<arg>${query}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${str} and '${result[0][0]}'=='${expected}'</arg>
+<arg>Should Be Equal As Strings</arg>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+<arg>ELSE</arg>
+<arg>Log To Console</arg>
+<arg>Invalid Datatype</arg>
+</arguments>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:44.281" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'int'&gt;</msg>
+<status status="PASS" endtime="20180110 16:40:44.281" starttime="20180110 16:40:44.280"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:44.281" starttime="20180110 16:40:44.279"></status>
+</kw>
+<kw name="Disconnect connection to oracleDB" library="dbConnections">
+<kw name="Disconnect From Database" library="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<msg timestamp="20180110 16:40:44.283" level="INFO">Executing : Disconnect From Database</msg>
+<status status="PASS" endtime="20180110 16:40:44.286" starttime="20180110 16:40:44.283"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:44.287" starttime="20180110 16:40:44.282"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:44.287" starttime="20180110 16:40:44.201"></status>
+</kw>
+<kw name="Oracle DB query" library="commonTasks">
+<arguments>
+<arg>${latestNotification}</arg>
+<arg>${subscription_expected_1st_level_global_notification1}</arg>
+<arg>str</arg>
+</arguments>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>int</arg>
+</arguments>
+<assign>
+<var>${int}</var>
+</assign>
+<msg timestamp="20180110 16:40:44.289" level="INFO">${int} = int</msg>
+<status status="PASS" endtime="20180110 16:40:44.289" starttime="20180110 16:40:44.288"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>str</arg>
+</arguments>
+<assign>
+<var>${str}</var>
+</assign>
+<msg timestamp="20180110 16:40:44.290" level="INFO">${str} = str</msg>
+<status status="PASS" endtime="20180110 16:40:44.290" starttime="20180110 16:40:44.290"></status>
+</kw>
+<kw name="Connect to oracle database" library="dbConnections">
+<kw name="Connect To Database Using Custom Params" library="DatabaseLibrary">
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to</doc>
+<arguments>
+<arg>cx_Oracle</arg>
+<arg>'${dbUser}/${dbPassword}@${oracle_service_name}'</arg>
+</arguments>
+<msg timestamp="20180110 16:40:44.292" level="INFO">Executing : Connect To Database Using Custom Params : cx_Oracle.connect(db_api_2.connect('SIT_CE43/SIT_CE43@SITDB')) </msg>
+<status status="PASS" endtime="20180110 16:40:44.342" starttime="20180110 16:40:44.291"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:44.343" starttime="20180110 16:40:44.291"></status>
+</kw>
+<kw name="Query from database" library="dbConnections">
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${queryResults}</var>
+</assign>
+<msg timestamp="20180110 16:40:44.344" level="INFO">Executing : Query  |  select * from (select cshl_message from cgw_sbnotification_history_log where cshl_mobile_no = '0051121202' and cshl_dtime &gt; trunc(sysdate) order by cshl_dtime desc) where ROWNUM=1 </msg>
+<msg timestamp="20180110 16:40:44.360" level="INFO">${queryResults} = [('Global 1st level Optin: Reply AUTO_YUP to accept else AUTO_REJECT to reject to shortcode 8880 for the requested KEYWORD AUTO_ZOOZOO1',)]</msg>
+<status status="PASS" endtime="20180110 16:40:44.361" starttime="20180110 16:40:44.344"></status>
+</kw>
+<msg timestamp="20180110 16:40:44.361" level="INFO">${result} = [('Global 1st level Optin: Reply AUTO_YUP to accept else AUTO_REJECT to reject to shortcode 8880 for the requested KEYWORD AUTO_ZOOZOO1',)]</msg>
+<status status="PASS" endtime="20180110 16:40:44.362" starttime="20180110 16:40:44.343"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${result[0][0]}</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:40:44.363" starttime="20180110 16:40:44.362"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${datatype}==${int} and '${result[0][0]}'!='${expected}'</arg>
+<arg>Assert_int</arg>
+<arg>${expected}</arg>
+<arg>${query}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${int} and '${result[0][0]}'=='${expected}'</arg>
+<arg>Should Be Equal As Integers</arg>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${str} and '${result[0][0]}'!='${expected}'</arg>
+<arg>Assert_string</arg>
+<arg>${expected}</arg>
+<arg>${query}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${str} and '${result[0][0]}'=='${expected}'</arg>
+<arg>Should Be Equal As Strings</arg>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+<arg>ELSE</arg>
+<arg>Log To Console</arg>
+<arg>Invalid Datatype</arg>
+</arguments>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:44.365" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'str'&gt;</msg>
+<status status="PASS" endtime="20180110 16:40:44.366" starttime="20180110 16:40:44.365"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:44.366" starttime="20180110 16:40:44.363"></status>
+</kw>
+<kw name="Disconnect connection to oracleDB" library="dbConnections">
+<kw name="Disconnect From Database" library="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<msg timestamp="20180110 16:40:44.367" level="INFO">Executing : Disconnect From Database</msg>
+<status status="PASS" endtime="20180110 16:40:44.378" starttime="20180110 16:40:44.367"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:44.379" starttime="20180110 16:40:44.366"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:44.379" starttime="20180110 16:40:44.287"></status>
+</kw>
+<kw name="moRequest" library="fireMORequestRes">
+<arguments>
+<arg>${subscription_1st_level_accept keyword}</arg>
+<arg>${subscription_msisdn}</arg>
+<arg>${subscription_shortcode1}</arg>
+</arguments>
+<kw name="Get moUrl" library="webserviceTasks">
+<arguments>
+<arg>${short_message}</arg>
+<arg>${source_addr}</arg>
+<arg>${dest_addr}</arg>
+</arguments>
+<assign>
+<var>${moUrl}</var>
+</assign>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=</arg>
+<arg>short_message=</arg>
+<arg>${sms}</arg>
+<arg>&amp;source_addr=</arg>
+<arg>${srcAddr}</arg>
+<arg>&amp;destination_addr=</arg>
+<arg>${destAddr}</arg>
+</arguments>
+<assign>
+<var>${string1}</var>
+</assign>
+<msg timestamp="20180110 16:40:44.382" level="INFO">${string1} = short_message=AUTO_YUP&amp;source_addr=0051121202&amp;destination_addr=8880</msg>
+<status status="PASS" endtime="20180110 16:40:44.382" starttime="20180110 16:40:44.381"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=</arg>
+<arg>${moGetUrl}</arg>
+<arg>${string1}</arg>
+<arg>&amp;submit=Submit+Message&amp;service_type=&amp;source_addr_ton=1&amp;source_addr_npi=1&amp;dest_addr_ton=1&amp;dest_addr_npi=1&amp;esm_class=0&amp;protocol_ID=&amp;priority_flag=&amp;registered_delivery_flag=0&amp;data_coding=0&amp;user_message_reference=&amp;source_port=&amp;destination_port=&amp;sar_msg_ref_num=&amp;sar_total_segments=&amp;sar_segment_seqnum=&amp;user_response_code=&amp;privacy_indicator=&amp;payload_type=&amp;message_payload=&amp;callback_num=&amp;source_subaddress=&amp;dest_subaddress=&amp;language_indicator=&amp;tlv1_tag=&amp;tlv1_len=&amp;tlv1_val=&amp;tlv2_tag=&amp;tlv2_len=&amp;tlv2_val=&amp;tlv3_tag=&amp;tlv3_len=&amp;tlv3_val=&amp;tlv4_tag=&amp;tlv4_len=&amp;tlv4_val=&amp;tlv5_tag=&amp;tlv5_len=&amp;tlv5_val=&amp;tlv6_tag=&amp;tlv6_len=&amp;tlv6_val=&amp;tlv7_tag=&amp;tlv7_len=&amp;tlv7_val=</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<msg timestamp="20180110 16:40:44.383" level="INFO">${url} = http://172.20.39.82:8888/inject_mo?short_message=AUTO_YUP&amp;source_addr=0051121202&amp;destination_addr=8880&amp;submit=Submit+Message&amp;service_type=&amp;source_addr_ton=1&amp;source_addr_npi=1&amp;dest_addr_ton=1&amp;dest_addr...</msg>
+<status status="PASS" endtime="20180110 16:40:44.383" starttime="20180110 16:40:44.382"></status>
+</kw>
+<msg timestamp="20180110 16:40:44.383" level="INFO">${moUrl} = http://172.20.39.82:8888/inject_mo?short_message=AUTO_YUP&amp;source_addr=0051121202&amp;destination_addr=8880&amp;submit=Submit+Message&amp;service_type=&amp;source_addr_ton=1&amp;source_addr_npi=1&amp;dest_addr_ton=1&amp;dest_addr...</msg>
+<status status="PASS" endtime="20180110 16:40:44.383" starttime="20180110 16:40:44.380"></status>
+</kw>
+<kw name="Prepare and fire GETRequest" library="webserviceTasks">
+<arguments>
+<arg>${moUrl}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>request</arg>
+<arg>${requestURL}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:44.385" level="INFO">Creating Session using : alias=request, url=http://172.20.39.82:8888/inject_mo?short_message=AUTO_YUP&amp;source_addr=0051121202&amp;destination_addr=8880&amp;submit=Submit+Message&amp;service_type=&amp;source_addr_ton=1&amp;source_addr_npi=1&amp;dest_addr_ton=1&amp;dest_addr_npi=1&amp;esm_class=0&amp;protocol_ID=&amp;priority_flag=&amp;registered_delivery_flag=0&amp;data_coding=0&amp;user_message_reference=&amp;source_port=&amp;destination_port=&amp;sar_msg_ref_num=&amp;sar_total_segments=&amp;sar_segment_seqnum=&amp;user_response_code=&amp;privacy_indicator=&amp;payload_type=&amp;message_payload=&amp;callback_num=&amp;source_subaddress=&amp;dest_subaddress=&amp;language_indicator=&amp;tlv1_tag=&amp;tlv1_len=&amp;tlv1_val=&amp;tlv2_tag=&amp;tlv2_len=&amp;tlv2_val=&amp;tlv3_tag=&amp;tlv3_len=&amp;tlv3_val=&amp;tlv4_tag=&amp;tlv4_len=&amp;tlv4_val=&amp;tlv5_tag=&amp;tlv5_len=&amp;tlv5_val=&amp;tlv6_tag=&amp;tlv6_len=&amp;tlv6_val=&amp;tlv7_tag=&amp;tlv7_len=&amp;tlv7_val=, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180110 16:40:44.385" starttime="20180110 16:40:44.384"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>request</arg>
+<arg>/</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180110 16:40:44.415" level="INFO">Get Request using : alias=request, uri=/, headers=None </msg>
+<msg timestamp="20180110 16:40:44.416" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180110 16:40:44.416" starttime="20180110 16:40:44.386"></status>
+</kw>
+<msg timestamp="20180110 16:40:44.416" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180110 16:40:44.417" starttime="20180110 16:40:44.384"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:44.417" starttime="20180110 16:40:44.379"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${small_sleep}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:49.418" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" endtime="20180110 16:40:49.418" starttime="20180110 16:40:44.417"></status>
+</kw>
+<kw name="Oracle DB query" library="commonTasks">
+<arguments>
+<arg>${isSubscriptionOptinSessionActive1}</arg>
+<arg>1</arg>
+<arg>int</arg>
+</arguments>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>int</arg>
+</arguments>
+<assign>
+<var>${int}</var>
+</assign>
+<msg timestamp="20180110 16:40:49.420" level="INFO">${int} = int</msg>
+<status status="PASS" endtime="20180110 16:40:49.420" starttime="20180110 16:40:49.420"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>str</arg>
+</arguments>
+<assign>
+<var>${str}</var>
+</assign>
+<msg timestamp="20180110 16:40:49.421" level="INFO">${str} = str</msg>
+<status status="PASS" endtime="20180110 16:40:49.421" starttime="20180110 16:40:49.421"></status>
+</kw>
+<kw name="Connect to oracle database" library="dbConnections">
+<kw name="Connect To Database Using Custom Params" library="DatabaseLibrary">
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to</doc>
+<arguments>
+<arg>cx_Oracle</arg>
+<arg>'${dbUser}/${dbPassword}@${oracle_service_name}'</arg>
+</arguments>
+<msg timestamp="20180110 16:40:49.423" level="INFO">Executing : Connect To Database Using Custom Params : cx_Oracle.connect(db_api_2.connect('SIT_CE43/SIT_CE43@SITDB')) </msg>
+<status status="PASS" endtime="20180110 16:40:49.506" starttime="20180110 16:40:49.422"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:49.507" starttime="20180110 16:40:49.422"></status>
+</kw>
+<kw name="Query from database" library="dbConnections">
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${queryResults}</var>
+</assign>
+<msg timestamp="20180110 16:40:49.509" level="INFO">Executing : Query  |  select count(*) from cgw_validate_optin_session where cvos_msisdn = '0051121202' and CVOS_FIRST_ACTIVITY_DTIME &gt; trunc(sysdate) and cvos_shortcode = '8880' and cvos_pkg_keyword = 'AUTO_ZOOZOO1' </msg>
+<msg timestamp="20180110 16:40:49.528" level="INFO">${queryResults} = [(1,)]</msg>
+<status status="PASS" endtime="20180110 16:40:49.528" starttime="20180110 16:40:49.508"></status>
+</kw>
+<msg timestamp="20180110 16:40:49.528" level="INFO">${result} = [(1,)]</msg>
+<status status="PASS" endtime="20180110 16:40:49.529" starttime="20180110 16:40:49.507"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${result[0][0]}</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:40:49.530" starttime="20180110 16:40:49.529"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${datatype}==${int} and '${result[0][0]}'!='${expected}'</arg>
+<arg>Assert_int</arg>
+<arg>${expected}</arg>
+<arg>${query}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${int} and '${result[0][0]}'=='${expected}'</arg>
+<arg>Should Be Equal As Integers</arg>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${str} and '${result[0][0]}'!='${expected}'</arg>
+<arg>Assert_string</arg>
+<arg>${expected}</arg>
+<arg>${query}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${str} and '${result[0][0]}'=='${expected}'</arg>
+<arg>Should Be Equal As Strings</arg>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+<arg>ELSE</arg>
+<arg>Log To Console</arg>
+<arg>Invalid Datatype</arg>
+</arguments>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:49.532" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'int'&gt;</msg>
+<status status="PASS" endtime="20180110 16:40:49.532" starttime="20180110 16:40:49.531"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:49.532" starttime="20180110 16:40:49.530"></status>
+</kw>
+<kw name="Disconnect connection to oracleDB" library="dbConnections">
+<kw name="Disconnect From Database" library="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<msg timestamp="20180110 16:40:49.534" level="INFO">Executing : Disconnect From Database</msg>
+<status status="PASS" endtime="20180110 16:40:49.541" starttime="20180110 16:40:49.533"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:49.542" starttime="20180110 16:40:49.533"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:49.542" starttime="20180110 16:40:49.419"></status>
+</kw>
+<kw name="Oracle DB query" library="commonTasks">
+<arguments>
+<arg>${latestNotification}</arg>
+<arg>${subscription_expected_2nd_level_global_notification1}</arg>
+<arg>str</arg>
+</arguments>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>int</arg>
+</arguments>
+<assign>
+<var>${int}</var>
+</assign>
+<msg timestamp="20180110 16:40:49.544" level="INFO">${int} = int</msg>
+<status status="PASS" endtime="20180110 16:40:49.544" starttime="20180110 16:40:49.544"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>str</arg>
+</arguments>
+<assign>
+<var>${str}</var>
+</assign>
+<msg timestamp="20180110 16:40:49.545" level="INFO">${str} = str</msg>
+<status status="PASS" endtime="20180110 16:40:49.545" starttime="20180110 16:40:49.544"></status>
+</kw>
+<kw name="Connect to oracle database" library="dbConnections">
+<kw name="Connect To Database Using Custom Params" library="DatabaseLibrary">
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to</doc>
+<arguments>
+<arg>cx_Oracle</arg>
+<arg>'${dbUser}/${dbPassword}@${oracle_service_name}'</arg>
+</arguments>
+<msg timestamp="20180110 16:40:49.546" level="INFO">Executing : Connect To Database Using Custom Params : cx_Oracle.connect(db_api_2.connect('SIT_CE43/SIT_CE43@SITDB')) </msg>
+<status status="PASS" endtime="20180110 16:40:49.614" starttime="20180110 16:40:49.546"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:49.615" starttime="20180110 16:40:49.545"></status>
+</kw>
+<kw name="Query from database" library="dbConnections">
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${queryResults}</var>
+</assign>
+<msg timestamp="20180110 16:40:49.617" level="INFO">Executing : Query  |  select * from (select cshl_message from cgw_sbnotification_history_log where cshl_mobile_no = '0051121202' and cshl_dtime &gt; trunc(sysdate) order by cshl_dtime desc) where ROWNUM=1 </msg>
+<msg timestamp="20180110 16:40:49.640" level="INFO">${queryResults} = [('Global 2nd level Optin: Reply AUTO_SURE to accept else AUTO_NO to reject to shortcode 8880 for the requested KEYWORD AUTO_ZOOZOO1',)]</msg>
+<status status="PASS" endtime="20180110 16:40:49.640" starttime="20180110 16:40:49.616"></status>
+</kw>
+<msg timestamp="20180110 16:40:49.641" level="INFO">${result} = [('Global 2nd level Optin: Reply AUTO_SURE to accept else AUTO_NO to reject to shortcode 8880 for the requested KEYWORD AUTO_ZOOZOO1',)]</msg>
+<status status="PASS" endtime="20180110 16:40:49.641" starttime="20180110 16:40:49.615"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${result[0][0]}</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:40:49.642" starttime="20180110 16:40:49.641"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${datatype}==${int} and '${result[0][0]}'!='${expected}'</arg>
+<arg>Assert_int</arg>
+<arg>${expected}</arg>
+<arg>${query}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${int} and '${result[0][0]}'=='${expected}'</arg>
+<arg>Should Be Equal As Integers</arg>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${str} and '${result[0][0]}'!='${expected}'</arg>
+<arg>Assert_string</arg>
+<arg>${expected}</arg>
+<arg>${query}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${str} and '${result[0][0]}'=='${expected}'</arg>
+<arg>Should Be Equal As Strings</arg>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+<arg>ELSE</arg>
+<arg>Log To Console</arg>
+<arg>Invalid Datatype</arg>
+</arguments>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:49.645" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'str'&gt;</msg>
+<status status="PASS" endtime="20180110 16:40:49.645" starttime="20180110 16:40:49.644"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:49.646" starttime="20180110 16:40:49.643"></status>
+</kw>
+<kw name="Disconnect connection to oracleDB" library="dbConnections">
+<kw name="Disconnect From Database" library="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<msg timestamp="20180110 16:40:49.647" level="INFO">Executing : Disconnect From Database</msg>
+<status status="PASS" endtime="20180110 16:40:49.660" starttime="20180110 16:40:49.647"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:49.660" starttime="20180110 16:40:49.646"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:49.661" starttime="20180110 16:40:49.543"></status>
+</kw>
+<kw name="moRequest" library="fireMORequestRes">
+<arguments>
+<arg>${subscription_2nd_level_accept keyword}</arg>
+<arg>${subscription_msisdn}</arg>
+<arg>${subscription_shortcode1}</arg>
+</arguments>
+<kw name="Get moUrl" library="webserviceTasks">
+<arguments>
+<arg>${short_message}</arg>
+<arg>${source_addr}</arg>
+<arg>${dest_addr}</arg>
+</arguments>
+<assign>
+<var>${moUrl}</var>
+</assign>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=</arg>
+<arg>short_message=</arg>
+<arg>${sms}</arg>
+<arg>&amp;source_addr=</arg>
+<arg>${srcAddr}</arg>
+<arg>&amp;destination_addr=</arg>
+<arg>${destAddr}</arg>
+</arguments>
+<assign>
+<var>${string1}</var>
+</assign>
+<msg timestamp="20180110 16:40:49.663" level="INFO">${string1} = short_message=AUTO_SURE&amp;source_addr=0051121202&amp;destination_addr=8880</msg>
+<status status="PASS" endtime="20180110 16:40:49.663" starttime="20180110 16:40:49.663"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=</arg>
+<arg>${moGetUrl}</arg>
+<arg>${string1}</arg>
+<arg>&amp;submit=Submit+Message&amp;service_type=&amp;source_addr_ton=1&amp;source_addr_npi=1&amp;dest_addr_ton=1&amp;dest_addr_npi=1&amp;esm_class=0&amp;protocol_ID=&amp;priority_flag=&amp;registered_delivery_flag=0&amp;data_coding=0&amp;user_message_reference=&amp;source_port=&amp;destination_port=&amp;sar_msg_ref_num=&amp;sar_total_segments=&amp;sar_segment_seqnum=&amp;user_response_code=&amp;privacy_indicator=&amp;payload_type=&amp;message_payload=&amp;callback_num=&amp;source_subaddress=&amp;dest_subaddress=&amp;language_indicator=&amp;tlv1_tag=&amp;tlv1_len=&amp;tlv1_val=&amp;tlv2_tag=&amp;tlv2_len=&amp;tlv2_val=&amp;tlv3_tag=&amp;tlv3_len=&amp;tlv3_val=&amp;tlv4_tag=&amp;tlv4_len=&amp;tlv4_val=&amp;tlv5_tag=&amp;tlv5_len=&amp;tlv5_val=&amp;tlv6_tag=&amp;tlv6_len=&amp;tlv6_val=&amp;tlv7_tag=&amp;tlv7_len=&amp;tlv7_val=</arg>
+</arguments>
+<assign>
+<var>${url}</var>
+</assign>
+<msg timestamp="20180110 16:40:49.664" level="INFO">${url} = http://172.20.39.82:8888/inject_mo?short_message=AUTO_SURE&amp;source_addr=0051121202&amp;destination_addr=8880&amp;submit=Submit+Message&amp;service_type=&amp;source_addr_ton=1&amp;source_addr_npi=1&amp;dest_addr_ton=1&amp;dest_add...</msg>
+<status status="PASS" endtime="20180110 16:40:49.665" starttime="20180110 16:40:49.664"></status>
+</kw>
+<msg timestamp="20180110 16:40:49.665" level="INFO">${moUrl} = http://172.20.39.82:8888/inject_mo?short_message=AUTO_SURE&amp;source_addr=0051121202&amp;destination_addr=8880&amp;submit=Submit+Message&amp;service_type=&amp;source_addr_ton=1&amp;source_addr_npi=1&amp;dest_addr_ton=1&amp;dest_add...</msg>
+<status status="PASS" endtime="20180110 16:40:49.665" starttime="20180110 16:40:49.662"></status>
+</kw>
+<kw name="Prepare and fire GETRequest" library="webserviceTasks">
+<arguments>
+<arg>${moUrl}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>request</arg>
+<arg>${requestURL}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:49.667" level="INFO">Creating Session using : alias=request, url=http://172.20.39.82:8888/inject_mo?short_message=AUTO_SURE&amp;source_addr=0051121202&amp;destination_addr=8880&amp;submit=Submit+Message&amp;service_type=&amp;source_addr_ton=1&amp;source_addr_npi=1&amp;dest_addr_ton=1&amp;dest_addr_npi=1&amp;esm_class=0&amp;protocol_ID=&amp;priority_flag=&amp;registered_delivery_flag=0&amp;data_coding=0&amp;user_message_reference=&amp;source_port=&amp;destination_port=&amp;sar_msg_ref_num=&amp;sar_total_segments=&amp;sar_segment_seqnum=&amp;user_response_code=&amp;privacy_indicator=&amp;payload_type=&amp;message_payload=&amp;callback_num=&amp;source_subaddress=&amp;dest_subaddress=&amp;language_indicator=&amp;tlv1_tag=&amp;tlv1_len=&amp;tlv1_val=&amp;tlv2_tag=&amp;tlv2_len=&amp;tlv2_val=&amp;tlv3_tag=&amp;tlv3_len=&amp;tlv3_val=&amp;tlv4_tag=&amp;tlv4_len=&amp;tlv4_val=&amp;tlv5_tag=&amp;tlv5_len=&amp;tlv5_val=&amp;tlv6_tag=&amp;tlv6_len=&amp;tlv6_val=&amp;tlv7_tag=&amp;tlv7_len=&amp;tlv7_val=, headers={},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20180110 16:40:49.667" starttime="20180110 16:40:49.666"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the</doc>
+<arguments>
+<arg>request</arg>
+<arg>/</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20180110 16:40:49.696" level="INFO">Get Request using : alias=request, uri=/, headers=None </msg>
+<msg timestamp="20180110 16:40:49.696" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180110 16:40:49.697" starttime="20180110 16:40:49.668"></status>
+</kw>
+<msg timestamp="20180110 16:40:49.697" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20180110 16:40:49.697" starttime="20180110 16:40:49.665"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:49.698" starttime="20180110 16:40:49.661"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${small_sleep}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:54.699" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" endtime="20180110 16:40:54.699" starttime="20180110 16:40:49.699"></status>
+</kw>
+<kw name="Oracle DB query" library="commonTasks">
+<arguments>
+<arg>${isSubscriptionOptinSessionActive1}</arg>
+<arg>0</arg>
+<arg>int</arg>
+</arguments>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>int</arg>
+</arguments>
+<assign>
+<var>${int}</var>
+</assign>
+<msg timestamp="20180110 16:40:54.701" level="INFO">${int} = int</msg>
+<status status="PASS" endtime="20180110 16:40:54.701" starttime="20180110 16:40:54.701"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>str</arg>
+</arguments>
+<assign>
+<var>${str}</var>
+</assign>
+<msg timestamp="20180110 16:40:54.702" level="INFO">${str} = str</msg>
+<status status="PASS" endtime="20180110 16:40:54.702" starttime="20180110 16:40:54.702"></status>
+</kw>
+<kw name="Connect to oracle database" library="dbConnections">
+<kw name="Connect To Database Using Custom Params" library="DatabaseLibrary">
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to</doc>
+<arguments>
+<arg>cx_Oracle</arg>
+<arg>'${dbUser}/${dbPassword}@${oracle_service_name}'</arg>
+</arguments>
+<msg timestamp="20180110 16:40:54.704" level="INFO">Executing : Connect To Database Using Custom Params : cx_Oracle.connect(db_api_2.connect('SIT_CE43/SIT_CE43@SITDB')) </msg>
+<status status="PASS" endtime="20180110 16:40:54.753" starttime="20180110 16:40:54.703"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:54.753" starttime="20180110 16:40:54.703"></status>
+</kw>
+<kw name="Query from database" library="dbConnections">
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${queryResults}</var>
+</assign>
+<msg timestamp="20180110 16:40:54.755" level="INFO">Executing : Query  |  select count(*) from cgw_validate_optin_session where cvos_msisdn = '0051121202' and CVOS_FIRST_ACTIVITY_DTIME &gt; trunc(sysdate) and cvos_shortcode = '8880' and cvos_pkg_keyword = 'AUTO_ZOOZOO1' </msg>
+<msg timestamp="20180110 16:40:54.757" level="INFO">${queryResults} = [(0,)]</msg>
+<status status="PASS" endtime="20180110 16:40:54.757" starttime="20180110 16:40:54.755"></status>
+</kw>
+<msg timestamp="20180110 16:40:54.758" level="INFO">${result} = [(0,)]</msg>
+<status status="PASS" endtime="20180110 16:40:54.758" starttime="20180110 16:40:54.754"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${result[0][0]}</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:40:54.760" starttime="20180110 16:40:54.759"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${datatype}==${int} and '${result[0][0]}'!='${expected}'</arg>
+<arg>Assert_int</arg>
+<arg>${expected}</arg>
+<arg>${query}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${int} and '${result[0][0]}'=='${expected}'</arg>
+<arg>Should Be Equal As Integers</arg>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${str} and '${result[0][0]}'!='${expected}'</arg>
+<arg>Assert_string</arg>
+<arg>${expected}</arg>
+<arg>${query}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${str} and '${result[0][0]}'=='${expected}'</arg>
+<arg>Should Be Equal As Strings</arg>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+<arg>ELSE</arg>
+<arg>Log To Console</arg>
+<arg>Invalid Datatype</arg>
+</arguments>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:54.763" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'int'&gt;</msg>
+<status status="PASS" endtime="20180110 16:40:54.763" starttime="20180110 16:40:54.762"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:54.763" starttime="20180110 16:40:54.760"></status>
+</kw>
+<kw name="Disconnect connection to oracleDB" library="dbConnections">
+<kw name="Disconnect From Database" library="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<msg timestamp="20180110 16:40:54.765" level="INFO">Executing : Disconnect From Database</msg>
+<status status="PASS" endtime="20180110 16:40:54.768" starttime="20180110 16:40:54.765"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:54.768" starttime="20180110 16:40:54.764"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:54.768" starttime="20180110 16:40:54.700"></status>
+</kw>
+<kw name="Oracle DB query" library="commonTasks">
+<arguments>
+<arg>${isSubscripitonActive1}</arg>
+<arg>1</arg>
+<arg>int</arg>
+</arguments>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>int</arg>
+</arguments>
+<assign>
+<var>${int}</var>
+</assign>
+<msg timestamp="20180110 16:40:54.770" level="INFO">${int} = int</msg>
+<status status="PASS" endtime="20180110 16:40:54.770" starttime="20180110 16:40:54.770"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>str</arg>
+</arguments>
+<assign>
+<var>${str}</var>
+</assign>
+<msg timestamp="20180110 16:40:54.771" level="INFO">${str} = str</msg>
+<status status="PASS" endtime="20180110 16:40:54.771" starttime="20180110 16:40:54.771"></status>
+</kw>
+<kw name="Connect to oracle database" library="dbConnections">
+<kw name="Connect To Database Using Custom Params" library="DatabaseLibrary">
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to</doc>
+<arguments>
+<arg>cx_Oracle</arg>
+<arg>'${dbUser}/${dbPassword}@${oracle_service_name}'</arg>
+</arguments>
+<msg timestamp="20180110 16:40:54.773" level="INFO">Executing : Connect To Database Using Custom Params : cx_Oracle.connect(db_api_2.connect('SIT_CE43/SIT_CE43@SITDB')) </msg>
+<status status="PASS" endtime="20180110 16:40:54.838" starttime="20180110 16:40:54.772"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:54.838" starttime="20180110 16:40:54.772"></status>
+</kw>
+<kw name="Query from database" library="dbConnections">
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${queryResults}</var>
+</assign>
+<msg timestamp="20180110 16:40:54.839" level="INFO">Executing : Query  |  select count(*) from sub_subscriber_detail where ssd_active = 'A' and ssd_source_msisdn = '0051121202' and ssd_keyword = 'AUTO_ZOOZOO1' </msg>
+<msg timestamp="20180110 16:40:54.845" level="INFO">${queryResults} = [(1,)]</msg>
+<status status="PASS" endtime="20180110 16:40:54.845" starttime="20180110 16:40:54.839"></status>
+</kw>
+<msg timestamp="20180110 16:40:54.845" level="INFO">${result} = [(1,)]</msg>
+<status status="PASS" endtime="20180110 16:40:54.845" starttime="20180110 16:40:54.838"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${result[0][0]}</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:40:54.847" starttime="20180110 16:40:54.846"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${datatype}==${int} and '${result[0][0]}'!='${expected}'</arg>
+<arg>Assert_int</arg>
+<arg>${expected}</arg>
+<arg>${query}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${int} and '${result[0][0]}'=='${expected}'</arg>
+<arg>Should Be Equal As Integers</arg>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${str} and '${result[0][0]}'!='${expected}'</arg>
+<arg>Assert_string</arg>
+<arg>${expected}</arg>
+<arg>${query}</arg>
+<arg>ELSE IF</arg>
+<arg>${datatype}==${str} and '${result[0][0]}'=='${expected}'</arg>
+<arg>Should Be Equal As Strings</arg>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+<arg>ELSE</arg>
+<arg>Log To Console</arg>
+<arg>Invalid Datatype</arg>
+</arguments>
+<kw name="Should Be Equal As Integers" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${expected}</arg>
+<arg>${result[0][0]}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:54.849" level="INFO">Argument types are:
+&lt;type 'unicode'&gt;
+&lt;type 'int'&gt;</msg>
+<status status="PASS" endtime="20180110 16:40:54.849" starttime="20180110 16:40:54.849"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:54.850" starttime="20180110 16:40:54.847"></status>
+</kw>
+<kw name="Disconnect connection to oracleDB" library="dbConnections">
+<kw name="Disconnect From Database" library="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<msg timestamp="20180110 16:40:54.851" level="INFO">Executing : Disconnect From Database</msg>
+<status status="PASS" endtime="20180110 16:40:54.854" starttime="20180110 16:40:54.851"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:54.855" starttime="20180110 16:40:54.850"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:54.855" starttime="20180110 16:40:54.769"></status>
+</kw>
+<kw name="Get DB details" library="commonTasks">
+<arguments>
+<arg>${getSubscriptionTransactionId1}</arg>
+</arguments>
+<assign>
+<var>${transactionID}</var>
+</assign>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${small_sleep}</arg>
+</arguments>
+<msg timestamp="20180110 16:40:59.857" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" endtime="20180110 16:40:59.857" starttime="20180110 16:40:54.856"></status>
+</kw>
+<kw name="Connect to oracle database" library="dbConnections">
+<kw name="Connect To Database Using Custom Params" library="DatabaseLibrary">
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to</doc>
+<arguments>
+<arg>cx_Oracle</arg>
+<arg>'${dbUser}/${dbPassword}@${oracle_service_name}'</arg>
+</arguments>
+<msg timestamp="20180110 16:40:59.859" level="INFO">Executing : Connect To Database Using Custom Params : cx_Oracle.connect(db_api_2.connect('SIT_CE43/SIT_CE43@SITDB')) </msg>
+<status status="PASS" endtime="20180110 16:40:59.922" starttime="20180110 16:40:59.858"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:40:59.923" starttime="20180110 16:40:59.858"></status>
+</kw>
+<kw name="Query from database" library="dbConnections">
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>${query}</arg>
+</arguments>
+<assign>
+<var>${queryResults}</var>
+</assign>
+<msg timestamp="20180110 16:40:59.924" level="INFO">Executing : Query  |  select * from (select td_transaction_id from transaction_details where TD_CREATED_DATE &gt; trunc(sysdate) and td_msisdn = 0051121202 and td_content_id != 0 and td_origin_id = 8880 order by td_event_time_stamp desc) where ROWNUM=1 </msg>
+<msg timestamp="20180110 16:41:00.014" level="INFO">${queryResults} = [(15155829052780051121202863467L,)]</msg>
+<status status="PASS" endtime="20180110 16:41:00.014" starttime="20180110 16:40:59.924"></status>
+</kw>
+<msg timestamp="20180110 16:41:00.015" level="INFO">${result} = [(15155829052780051121202863467L,)]</msg>
+<status status="PASS" endtime="20180110 16:41:00.015" starttime="20180110 16:40:59.923"></status>
+</kw>
+<msg timestamp="20180110 16:41:00.016" level="INFO">${transactionID} = 15155829052780051121202863467</msg>
+<status status="PASS" endtime="20180110 16:41:00.016" starttime="20180110 16:40:54.855"></status>
+</kw>
+<kw name="GetCDR" library="commonTasks">
+<arguments>
+<arg>${transactionID}</arg>
+<arg>prepaid</arg>
+</arguments>
+<assign>
+<var>${CDR}</var>
+</assign>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>cat</arg>
+</arguments>
+<assign>
+<var>${cat}</var>
+</assign>
+<msg timestamp="20180110 16:41:00.018" level="INFO">${cat} = cat</msg>
+<status status="PASS" endtime="20180110 16:41:00.018" starttime="20180110 16:41:00.017"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>| grep -v CallReference | grep</arg>
+</arguments>
+<assign>
+<var>${cmd}</var>
+</assign>
+<msg timestamp="20180110 16:41:00.019" level="INFO">${cmd} = | grep -v CallReference | grep</msg>
+<status status="PASS" endtime="20180110 16:41:00.019" starttime="20180110 16:41:00.018"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=</arg>
+<arg>${cdrPath}</arg>
+<arg>${subtype}</arg>
+<arg>/*</arg>
+</arguments>
+<assign>
+<var>${cdrpath}</var>
+</assign>
+<msg timestamp="20180110 16:41:00.020" level="INFO">${cdrpath} = /home/ceadmin43/data/cdr/prepaid/*</msg>
+<status status="PASS" endtime="20180110 16:41:00.020" starttime="20180110 16:41:00.019"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>${cat}</arg>
+<arg>${cdrpath}</arg>
+<arg>${cmd}</arg>
+<arg>${tid}</arg>
+</arguments>
+<assign>
+<var>${fcmd}</var>
+</assign>
+<msg timestamp="20180110 16:41:00.021" level="INFO">${fcmd} = cat /home/ceadmin43/data/cdr/prepaid/* | grep -v CallReference | grep 15155829052780051121202863467</msg>
+<status status="PASS" endtime="20180110 16:41:00.021" starttime="20180110 16:41:00.021"></status>
+</kw>
+<kw name="SSH to Server" library="sshTasks">
+<arguments>
+<arg>${testServer}</arg>
+<arg>${sshUser}</arg>
+<arg>${sshPassword}</arg>
+</arguments>
+<kw name="Open Connection" library="SSHLibrary">
+<doc>Opens a new SSH connection to the given `host` and `port`.</doc>
+<arguments>
+<arg>${ip}</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:41:00.023" starttime="20180110 16:41:00.022"></status>
+</kw>
+<kw name="Login" library="SSHLibrary">
+<doc>Logs into the SSH server with the given `username` and `password`.</doc>
+<arguments>
+<arg>${userid}</arg>
+<arg>${password}</arg>
+</arguments>
+<msg timestamp="20180110 16:41:00.024" level="INFO">Logging into '172.20.39.82:22' as 'ceadmin43'.</msg>
+<msg timestamp="20180110 16:41:02.254" level="INFO">Read output: Last login: Wed Jan 10 16:42:58 2018 from 10.50.52.93
+[ceadmin43@SIT-CE82 ~]$</msg>
+<status status="PASS" endtime="20180110 16:41:02.254" starttime="20180110 16:41:00.023"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:41:02.255" starttime="20180110 16:41:00.022"></status>
+</kw>
+<kw name="Execute shell and return" library="sshTasks">
+<arguments>
+<arg>${fcmd}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<kw name="Start Command" library="SSHLibrary">
+<doc>Starts execution of the `command` on the remote machine and returns immediately.</doc>
+<arguments>
+<arg>${command}</arg>
+</arguments>
+<msg timestamp="20180110 16:41:02.257" level="INFO">Starting command 'cat /home/ceadmin43/data/cdr/prepaid/* | grep -v CallReference | grep 15155829052780051121202863467'.</msg>
+<status status="PASS" endtime="20180110 16:41:02.262" starttime="20180110 16:41:02.256"></status>
+</kw>
+<kw name="Read Command Output" library="SSHLibrary">
+<doc>Returns outputs of the most recent started command.</doc>
+<arguments>
+<arg>return_stdout=True</arg>
+<arg>return_stderr=True</arg>
+</arguments>
+<assign>
+<var>${output}</var>
+</assign>
+<msg timestamp="20180110 16:41:02.263" level="INFO">Reading output of command 'cat /home/ceadmin43/data/cdr/prepaid/* | grep -v CallReference | grep 15155829052780051121202863467'.</msg>
+<msg timestamp="20180110 16:41:02.403" level="INFO">Command exited with return code 0.</msg>
+<msg timestamp="20180110 16:41:02.403" level="INFO">${output} = [u'1020104,15155829052780051121202863467,48103,automationcp,240897,auto_appln_subs1,777894,auto_content_subs1,8880,8880,63053,ACT SUBS,121202,121202,P,0051,4,1,10/01/2018164505,10/01/2018164505,999928...</msg>
+<status status="PASS" endtime="20180110 16:41:02.403" starttime="20180110 16:41:02.262"></status>
+</kw>
+<msg timestamp="20180110 16:41:02.404" level="INFO">${result} = [u'1020104,15155829052780051121202863467,48103,automationcp,240897,auto_appln_subs1,777894,auto_content_subs1,8880,8880,63053,ACT SUBS,121202,121202,P,0051,4,1,10/01/2018164505,10/01/2018164505,999928...</msg>
+<status status="PASS" endtime="20180110 16:41:02.477" starttime="20180110 16:41:02.255"></status>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<assign>
+<var>${length}</var>
+</assign>
+<msg timestamp="20180110 16:41:02.478" level="INFO">Length is 2</msg>
+<msg timestamp="20180110 16:41:02.479" level="INFO">${length} = 2</msg>
+<status status="PASS" endtime="20180110 16:41:02.479" starttime="20180110 16:41:02.478"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${length}!=0</arg>
+<arg>LOG</arg>
+<arg>CDR is present with mentioned transactionId</arg>
+<arg>ELSE</arg>
+<arg>${result[0]}</arg>
+<arg>GetCDR</arg>
+<arg>${tid}</arg>
+<arg>${subtype}</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>CDR is present with mentioned transactionId</arg>
+</arguments>
+<msg timestamp="20180110 16:41:02.480" level="INFO">CDR is present with mentioned transactionId</msg>
+<status status="PASS" endtime="20180110 16:41:02.481" starttime="20180110 16:41:02.480"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:41:02.481" starttime="20180110 16:41:02.479"></status>
+</kw>
+<msg timestamp="20180110 16:41:02.481" level="INFO">${CDR} = 1020104,15155829052780051121202863467,48103,automationcp,240897,auto_appln_subs1,777894,auto_content_subs1,8880,8880,63053,ACT SUBS,121202,121202,P,0051,4,1,10/01/2018164505,10/01/2018164505,999928,au...</msg>
+<status status="PASS" endtime="20180110 16:41:02.482" starttime="20180110 16:41:00.016"></status>
+</kw>
+<kw name="Compute Charging and Validate CDR" library="commonTasks">
+<arguments>
+<arg>${subscription_msisdn}</arg>
+<arg>${subscription_keyword1}</arg>
+<arg>${CDR}</arg>
+</arguments>
+<assign>
+<var>${charged_price}</var>
+</assign>
+<kw name="Connect to oracle database" library="dbConnections">
+<kw name="Connect To Database Using Custom Params" library="DatabaseLibrary">
+<doc>Loads the DB API 2.0 module given `dbapiModuleName` then uses it to</doc>
+<arguments>
+<arg>cx_Oracle</arg>
+<arg>'${dbUser}/${dbPassword}@${oracle_service_name}'</arg>
+</arguments>
+<msg timestamp="20180110 16:41:02.484" level="INFO">Executing : Connect To Database Using Custom Params : cx_Oracle.connect(db_api_2.connect('SIT_CE43/SIT_CE43@SITDB')) </msg>
+<status status="PASS" endtime="20180110 16:41:02.549" starttime="20180110 16:41:02.483"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:41:02.549" starttime="20180110 16:41:02.483"></status>
+</kw>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>select Provider_id, Provider_name, application_id, service_id, shortcode_cd, content_id, tariff_id from mv_cp_tariff_map where keyword = '${keyword}'</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20180110 16:41:02.550" level="INFO">Executing : Query  |  select Provider_id, Provider_name, application_id, service_id, shortcode_cd, content_id, tariff_id from mv_cp_tariff_map where keyword = 'AUTO_ZOOZOO1' </msg>
+<msg timestamp="20180110 16:41:02.565" level="INFO">${result} = [(48103, 'automationcp', 240897, 777894, '8880', 63053, 999928)]</msg>
+<status status="PASS" endtime="20180110 16:41:02.565" starttime="20180110 16:41:02.550"></status>
+</kw>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>select cpa_application_name from content_partner_application where cpa_application_id = ${result[0][2]}</arg>
+</arguments>
+<assign>
+<var>${application_name}</var>
+</assign>
+<msg timestamp="20180110 16:41:02.566" level="INFO">Executing : Query  |  select cpa_application_name from content_partner_application where cpa_application_id = 240897 </msg>
+<msg timestamp="20180110 16:41:02.568" level="INFO">${application_name} = [('auto_appln_subs1',)]</msg>
+<status status="PASS" endtime="20180110 16:41:02.568" starttime="20180110 16:41:02.566"></status>
+</kw>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>select ctm_content_type from content_type_master where ctm_content_type_id = ${result[0][3]}</arg>
+</arguments>
+<assign>
+<var>${service_name}</var>
+</assign>
+<msg timestamp="20180110 16:41:02.569" level="INFO">Executing : Query  |  select ctm_content_type from content_type_master where ctm_content_type_id = 777894 </msg>
+<msg timestamp="20180110 16:41:02.571" level="INFO">${service_name} = [('auto_content_subs1',)]</msg>
+<status status="PASS" endtime="20180110 16:41:02.571" starttime="20180110 16:41:02.569"></status>
+</kw>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>select ccpd_ccm_price, ccpd_ccm_shipment_price from CHARGE_CODE_PRICE_DETAIL where ccpd_ccm_charge_code_id = ${result[0][6]}</arg>
+</arguments>
+<assign>
+<var>${price}</var>
+</assign>
+<msg timestamp="20180110 16:41:02.572" level="INFO">Executing : Query  |  select ccpd_ccm_price, ccpd_ccm_shipment_price from CHARGE_CODE_PRICE_DETAIL where ccpd_ccm_charge_code_id = 999928 </msg>
+<msg timestamp="20180110 16:41:02.605" level="INFO">${price} = [(10.0, 1.0)]</msg>
+<status status="PASS" endtime="20180110 16:41:02.605" starttime="20180110 16:41:02.572"></status>
+</kw>
+<kw name="Query" library="DatabaseLibrary">
+<doc>Uses the input `selectStatement` to query for the values that will be returned as a list of tuples. Set optional</doc>
+<arguments>
+<arg>select ccm_tax, ccm_ett from charge_code_master where ccm_charge_code_id = ${result[0][6]}</arg>
+</arguments>
+<assign>
+<var>${tax}</var>
+</assign>
+<msg timestamp="20180110 16:41:02.607" level="INFO">Executing : Query  |  select ccm_tax, ccm_ett from charge_code_master where ccm_charge_code_id = 999928 </msg>
+<msg timestamp="20180110 16:41:02.609" level="INFO">${tax} = [(24.0, 'auto_appln_subs1')]</msg>
+<status status="PASS" endtime="20180110 16:41:02.609" starttime="20180110 16:41:02.606"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>(${price[0][0]}+${price[0][1]})*${tax[0][0]}/100</arg>
+</arguments>
+<assign>
+<var>${charged_tax}</var>
+</assign>
+<msg timestamp="20180110 16:41:02.610" level="INFO">${charged_tax} = 2.64</msg>
+<status status="PASS" endtime="20180110 16:41:02.610" starttime="20180110 16:41:02.609"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${price[0][0]}+${price[0][1]}+${charged_tax}</arg>
+</arguments>
+<assign>
+<var>${totalAmt}</var>
+</assign>
+<msg timestamp="20180110 16:41:02.612" level="INFO">${totalAmt} = 13.64</msg>
+<status status="PASS" endtime="20180110 16:41:02.612" starttime="20180110 16:41:02.611"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${totalAmt}*100000</arg>
+</arguments>
+<assign>
+<var>${AmountToBeDebitedFromPPIN}</var>
+</assign>
+<msg timestamp="20180110 16:41:02.613" level="INFO">${AmountToBeDebitedFromPPIN} = 1364000.0</msg>
+<status status="PASS" endtime="20180110 16:41:02.613" starttime="20180110 16:41:02.612"></status>
+</kw>
+<kw name="Get Substring" library="String">
+<doc>Returns a substring from ``start`` index to ``end`` index.</doc>
+<arguments>
+<arg>${msisdn}</arg>
+<arg>4</arg>
+</arguments>
+<assign>
+<var>${msisdnWithoutCountryCode}</var>
+</assign>
+<msg timestamp="20180110 16:41:02.614" level="INFO">${msisdnWithoutCountryCode} = 121202</msg>
+<status status="PASS" endtime="20180110 16:41:02.614" starttime="20180110 16:41:02.613"></status>
+</kw>
+<kw name="Set Expected Cdr" library="genericLibrary">
+<arguments>
+<arg>${result[0][0]}</arg>
+<arg>${result[0][1]}</arg>
+<arg>${result[0][2]}</arg>
+<arg>${application_name[0][0]}</arg>
+<arg>${result[0][3]}</arg>
+<arg>${service_name[0][0]}</arg>
+<arg>${result[0][4]}</arg>
+<arg>${result[0][5]}</arg>
+<arg>${msisdnWithoutCountryCode}</arg>
+<arg>${result[0][6]}</arg>
+<arg>${tax[0][1]}</arg>
+<arg>${tax[0][0]}</arg>
+<arg>${charged_tax}</arg>
+<arg>${price[0][1]}</arg>
+<arg>${price[0][1]}</arg>
+<arg>0.0</arg>
+<arg>${price[0][0]}</arg>
+<arg>${totalAmt}</arg>
+</arguments>
+<assign>
+<var>${expected_cdr}</var>
+</assign>
+<msg timestamp="20180110 16:41:02.617" level="INFO">${expected_cdr} = *,*,48103,automationcp,240897,auto_appln_subs1,777894,auto_content_subs1,8880,*,63053,*,121202,*,P,*,*,*,*,*,999928,auto_appln_subs1,*,SMS,24.0,2.64,1.0,1.0,0.0,10.0,13.64,*,*,*,*,Transaction complete...</msg>
+<status status="PASS" endtime="20180110 16:41:02.617" starttime="20180110 16:41:02.615"></status>
+</kw>
+<kw name="Compare CDRs" library="commonTasks">
+<arguments>
+<arg>${expected_cdr}</arg>
+<arg>${actual_cdr}</arg>
+</arguments>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Expected CDR=${expected_cdr}</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:41:02.619" starttime="20180110 16:41:02.618"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Actual CDR=${actual_cdr}</arg>
+</arguments>
+<status status="PASS" endtime="20180110 16:41:02.620" starttime="20180110 16:41:02.620"></status>
+</kw>
+<kw name="Match Cdrs" library="genericLibrary">
+<arguments>
+<arg>${expected_cdr}</arg>
+<arg>${actual_cdr}</arg>
+</arguments>
+<assign>
+<var>${res}</var>
+</assign>
+<msg timestamp="20180110 16:41:02.622" level="INFO">Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard
+Skip matching wildcard</msg>
+<msg timestamp="20180110 16:41:02.622" level="INFO">${res} = TRUE</msg>
+<status status="PASS" endtime="20180110 16:41:02.622" starttime="20180110 16:41:02.621"></status>
+</kw>
+<kw name="Fail if two values dont match" library="commonTasks">
+<arguments>
+<arg>${res}</arg>
+<arg>TRUE</arg>
+</arguments>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${expected_value}</arg>
+<arg>${actual_value}</arg>
+</arguments>
+<msg timestamp="20180110 16:41:02.624" level="INFO">Argument types are:
+&lt;type 'str'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20180110 16:41:02.624" starttime="20180110 16:41:02.623"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:41:02.624" starttime="20180110 16:41:02.623"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:41:02.625" starttime="20180110 16:41:02.617"></status>
+</kw>
+<kw name="Disconnect connection to oracleDB" library="dbConnections">
+<kw name="Disconnect From Database" library="DatabaseLibrary">
+<doc>Disconnects from the database.</doc>
+<msg timestamp="20180110 16:41:02.627" level="INFO">Executing : Disconnect From Database</msg>
+<status status="PASS" endtime="20180110 16:41:02.634" starttime="20180110 16:41:02.626"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:41:02.635" starttime="20180110 16:41:02.625"></status>
+</kw>
+<msg timestamp="20180110 16:41:02.635" level="INFO">${charged_price} = 1364000.0</msg>
+<status status="PASS" endtime="20180110 16:41:02.636" starttime="20180110 16:41:02.482"></status>
+</kw>
+<kw name="Compare Account_balance in PPIN" library="commonTasks">
+<arguments>
+<arg>${subscription_msisdn}</arg>
+<arg>${charged_price}</arg>
+</arguments>
+<kw name="Execute Sybase Query" library="sybaseLibrary">
+<arguments>
+<arg>select Account_balance from Subscriber where Sub_id='${msisdn}'</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20180110 16:41:02.667" level="INFO">${result} = [(8635999,)]</msg>
+<status status="PASS" endtime="20180110 16:41:02.668" starttime="20180110 16:41:02.637"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${result[0][0]}==9999999-${charged_price}</arg>
+<arg>LOG</arg>
+<arg>Balance is as expected</arg>
+<arg>ELSE</arg>
+<arg>LOG</arg>
+<arg>Wrong balance in PPIN</arg>
+</arguments>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Balance is as expected</arg>
+</arguments>
+<msg timestamp="20180110 16:41:02.669" level="INFO">Balance is as expected</msg>
+<status status="PASS" endtime="20180110 16:41:02.670" starttime="20180110 16:41:02.669"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:41:02.670" starttime="20180110 16:41:02.668"></status>
+</kw>
+<status status="PASS" endtime="20180110 16:41:02.670" starttime="20180110 16:41:02.636"></status>
+</kw>
+<tags>
+<tag>Regression</tag>
+<tag>Sanity</tag>
+<tag>Subscription</tag>
+</tags>
+<status status="PASS" endtime="20180110 16:41:02.671" critical="yes" starttime="20180110 16:39:09.271"></status>
+</test>
+<kw type="teardown" name="Close SybaseConnection" library="sybaseLibrary">
+<status status="PASS" endtime="20180110 16:41:02.857" starttime="20180110 16:41:02.672"></status>
+</kw>
+<doc>Double Opt-in Tests</doc>
+<status status="PASS" endtime="20180110 16:41:02.857" starttime="20180110 16:38:56.024"></status>
+</suite>
+<status status="PASS" endtime="20180110 16:41:02.860" starttime="20180110 16:38:56.022"></status>
+</suite>
+<status status="PASS" endtime="20180110 16:41:02.861" starttime="20180110 16:38:56.019"></status>
+</suite>
+<status status="PASS" endtime="20180110 16:41:02.862" starttime="20180110 16:38:55.372"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
+</total>
+<tag>
+<stat fail="0" pass="1">Regression</stat>
+<stat fail="0" pass="1">Sanity</stat>
+<stat fail="0" pass="1">Subscription</stat>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="CEAuto" pass="1">CEAuto</stat>
+<stat fail="0" id="s1-s1" name="TestSuite" pass="1">CEAuto.TestSuite</stat>
+<stat fail="0" id="s1-s1-s1" name="003-RQ1362" pass="1">CEAuto.TestSuite.003-RQ1362</stat>
+<stat fail="0" id="s1-s1-s1-s1" name="001-DoubleOptin" pass="1">CEAuto.TestSuite.003-RQ1362.001-DoubleOptin</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20180110 16:39:04.841" level="WARN">Imported library 'CreateExcelFile' contains no keywords.</msg>
+</errors>
+</robot>
